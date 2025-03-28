@@ -1,0 +1,15 @@
+[🧠 2025-03-28 20:28:46] how can i list all files ?
+[💡] ls
+
+[🧠 2025-03-28 20:29:01] how can i list all files inside a specific dir ?
+[💡] To list all files inside a specific directory, you can use the `ls` command followed by the path to the directory you want to list the files from.
+
+Step by step:
+1. Open your terminal.
+2. Use the following command to list all files inside a specific directory:
+   
+   ```bash
+   ls /path/to/directory
+   ```
+
+Replace `/path/to/directory` with the actual path of the directory you want to list the files from.

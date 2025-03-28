@@ -2,6 +2,7 @@ import os
 import subprocess
 import openai
 from dotenv import load_dotenv
+from datetime import datetime
 
 # Load API key
 load_dotenv()
@@ -37,6 +38,14 @@ def extract_command(text):
                 return part.strip().splitlines()[0]
     return text.strip().splitlines()[0]
 
+def log_history(question, response):
+    with open("history.log", "a") as f:
+        f.write(f"[🧠 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {question}\n")
+        f.write(f"[💡] {response}\n\n")
+
+
+
+
 if __name__ == "__main__":
     print("🧠 Welcome to TermiChat (type 'exit' or Ctrl+C to quit)\n")
     while True:
@@ -62,6 +71,7 @@ if __name__ == "__main__":
             # Get AI response
             answer = ask_terminal_question(user_input, explain_mode=explain_mode)
             print(f"\n💡 Response:\n{answer}\n")
+            log_history(user_input, answer)
 
             if run_mode:
                 cmd = extract_command(answer)
