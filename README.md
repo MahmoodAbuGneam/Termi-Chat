@@ -24,7 +24,7 @@ Made with ❤️ by [Mahmood Gneam](https://www.linkedin.com/in/mahmoodgneam/) �
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/termichat.git
+git clone https://github.com/MahmoodAbuGneam/Termi-Chat.git
 cd termichat
 ```
 
@@ -41,11 +41,12 @@ Create a `.env` file:
 touch .env
 nano .env
 ```
-Paste this line:
+Paste the following line with your own OpenAI API key:
 ```
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
-Or use the provided `example.env` as a template.
+🔐 Don’t have an API key yet?
+→ Get one from: [openAI API](https://platform.openai.com/account/api-keys)
 
 ### 4. Make it globally accessible
 ```bash
