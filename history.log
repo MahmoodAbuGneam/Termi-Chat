@@ -13,3 +13,24 @@ Step by step:
    ```
 
 Replace `/path/to/directory` with the actual path of the directory you want to list the files from.
+[🧠 2025-03-28 20:34:02] how can i create a temp folder in the temp ( random folder ) ?
+[💡] mkdir /tmp/temp/random_folder
+
+[🧠 2025-03-28 20:34:15] how can i list all files ?
+[💡] Sure! To list all files in a directory, you can use the `ls` command with the `-a` option. This will show all files, including hidden files that start with a dot.
+
+Here is the command step by step:
+1. `ls` - The command to list directory contents.
+2. `-a` - An option that tells `ls` to show all files, including hidden files.
+
+So, the command to list all files in a directory is:
+```
+ls -a
+```
+
+[🧠 2025-03-28 20:34:21] how can i list all files ?
+[💡] ls
+
+[🧠 2025-03-28 20:34:57] how can i list all files with all info about them ?
+[💡] ls -la
+

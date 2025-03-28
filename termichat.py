@@ -3,6 +3,14 @@ import subprocess
 import openai
 from dotenv import load_dotenv
 from datetime import datetime
+from rich.console import Console
+from rich.prompt import Prompt
+from rich.text import Text
+
+
+# using the 'rich' console to make the terminal look betterr 
+console = Console()
+
 
 # Load API key
 load_dotenv()
@@ -47,13 +55,13 @@ def log_history(question, response):
 
 
 if __name__ == "__main__":
-    print("🧠 Welcome to TermiChat (type 'exit' or Ctrl+C to quit)\n")
+    console.print("🧠 Welcome to TermiChat (type 'exit' or Ctrl+C to quit)\n")
     while True:
         try:
-            user_input = input("🧠 TermiChat > ").strip()
+            user_input = Prompt.ask("[bold cyan]🧠 TermiChat >[/]").strip()
 
             if user_input.lower() in ["exit", "quit"]:
-                print("👋 Goodbye!")
+                console.print("👋 Goodbye!")
                 break
 
             explain_mode = user_input.endswith("--explain")
@@ -70,23 +78,23 @@ if __name__ == "__main__":
 
             # Get AI response
             answer = ask_terminal_question(user_input, explain_mode=explain_mode)
-            print(f"\n💡 Response:\n{answer}\n")
+            console.print(f"\n[bold yellow]💡 Response:[/]\n{answer}\n")
             log_history(user_input, answer)
 
             if run_mode:
                 cmd = extract_command(answer)
-                print(f"⚠️ Attempting to run:\n{cmd}")
-                confirm = input("❓Do you want to run this command? (y/N): ").strip().lower()
+                console.print(f"[bold red]⚠️ Attempting to run:[/] {cmd}")
+                confirm = Prompt.ask("❓ Do you want to run this command? (y/N)").strip().lower()
                 if confirm == "y":
                     try:
                         result = subprocess.run(cmd, shell=True, check=True, capture_output=True, text=True)
-                        print(f"\n✅ Output:\n{result.stdout}")
+                        console.print(f"\n[bold green]✅ Output:[/]\n{result.stdout}")
                     except subprocess.CalledProcessError as e:
-                        print(f"\n❌ Error:\n{e.stderr}")
+                        console.print(f"\n[bold red]❌ Error:[/]\n{e.stderr}")
                 else:
-                    print("⏭️ Skipped running the command.")
+                    console.print("⏭️ Skipped running the command.")
 
         except KeyboardInterrupt:
-            print("\n👋 Goodbye!")
+            console.print("\n👋 Goodbye!")
             break
 
