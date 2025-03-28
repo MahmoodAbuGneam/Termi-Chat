@@ -65,10 +65,12 @@ def is_dangerous_command(cmd: str) -> bool:
     cmd_lower = cmd.lower().replace("  ", " ").strip()
     return any(keyword in cmd_lower for keyword in dangerous_keywords)
 
-def handle_request(full_input: str, explain_mode=False, run_mode=False):
+def handle_request(full_input: str, explain_mode=False, run_mode=False, original_input=None):
     answer = ask_terminal_question(full_input, explain_mode=explain_mode)
     console.print(f"\n[bold yellow]💡 Response:[/]\n{answer}\n")
-    log_history(full_input, answer)
+
+    # Log the full input with flags, if provided
+    log_history(original_input or full_input, answer)
 
     cmd = extract_command(answer)
 
@@ -87,6 +89,7 @@ def handle_request(full_input: str, explain_mode=False, run_mode=False):
                 console.print(f"\n[bold red]❌ Error:[/]\n{e.stderr}")
         else:
             console.print("⏭️ Skipped running the command.")
+
 
 
 

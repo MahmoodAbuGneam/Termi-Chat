@@ -1,53 +1,18 @@
-[🧠 2025-03-28 20:28:46] how can i list all files ?
-[💡] ls
-
-[🧠 2025-03-28 20:29:01] how can i list all files inside a specific dir ?
-[💡] To list all files inside a specific directory, you can use the `ls` command followed by the path to the directory you want to list the files from.
-
-Step by step:
-1. Open your terminal.
-2. Use the following command to list all files inside a specific directory:
-   
-   ```bash
-   ls /path/to/directory
-   ```
-
-Replace `/path/to/directory` with the actual path of the directory you want to list the files from.
-[🧠 2025-03-28 20:34:02] how can i create a temp folder in the temp ( random folder ) ?
-[💡] mkdir /tmp/temp/random_folder
-
-[🧠 2025-03-28 20:34:15] how can i list all files ?
-[💡] Sure! To list all files in a directory, you can use the `ls` command with the `-a` option. This will show all files, including hidden files that start with a dot.
-
-Here is the command step by step:
-1. `ls` - The command to list directory contents.
-2. `-a` - An option that tells `ls` to show all files, including hidden files.
-
-So, the command to list all files in a directory is:
-```
-ls -a
-```
-
-[🧠 2025-03-28 20:34:21] how can i list all files ?
-[💡] ls
-
-[🧠 2025-03-28 20:34:57] how can i list all files with all info about them ?
-[💡] ls -la
-
-[🧠 2025-03-28 21:07:02] how can i list all files in the current dir?
-[💡] ls
-
-[🧠 2025-03-28 21:07:08] how can i list all files in the current dir?
-[💡] Sure! To list all files in the current directory, you can use the following command:
+[🧠 2025-03-28 21:22:30] how can i list all the files in my curr dir ?
+[💡] To list all the files in your current directory, you can use the following command:
 
 ```bash
 ls
 ```
 
 Explanation:
-- `ls`: Stands for "list". It is a command used in Unix and Linux operating systems to list directory contents.
-- By running `ls` without any arguments, it will list all files and directories in the current working directory.
+- `ls`: This command stands for "list" and is used to display a list of files and directories in the current working directory.
 
-[🧠 2025-03-28 21:07:23] how can i list all files in the current dir?
+When you run this command, it will display a list of files (and directories) in your current directory.
+
+[🧠 2025-03-28 21:22:57] how can i list all the files in my curr dir -run
 [💡] ls
+
+[🧠 2025-03-28 21:23:22] how can i rm a certail folder with ug of 77
+[💡] `rm -rf foldername`
 
