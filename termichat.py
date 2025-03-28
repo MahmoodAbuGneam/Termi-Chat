@@ -51,6 +51,21 @@ def log_history(question, response):
         f.write(f"[🧠 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {question}\n")
         f.write(f"[💡] {response}\n\n")
 
+def is_dangerous_command(cmd: str) -> bool:
+    dangerous_keywords = [
+        "rm -rf /", "rm -rf", "rm *", "rm -r",
+        ":(){ :|:& };:",  # fork bomb
+        "mkfs", "mkfs.ext4", "mkfs.btrfs", "mkfs.xfs",
+        "dd if=", "dd of=", "mv /", "mv *", ">:",
+        "kill -9 1", "killall -9 init", "kill -9 0",
+        "poweroff", "shutdown", "reboot",
+        "chmod 000", "chown root",
+        "/dev/sda", "/dev/null", ">/dev/sda", ">/dev/null",
+        ">:"
+    ]
+
+    cmd_lower = cmd.lower().replace("  ", " ").strip()
+    return any(keyword in cmd_lower for keyword in dangerous_keywords)
 
 
 
@@ -80,9 +95,20 @@ if __name__ == "__main__":
             answer = ask_terminal_question(user_input, explain_mode=explain_mode)
             console.print(f"\n[bold yellow]💡 Response:[/]\n{answer}\n")
             log_history(user_input, answer)
+            
+            cmd = extract_command(answer)
+
+            if is_dangerous_command(cmd):
+                console.print("[bold red on yellow]🚨 DANGER:[/] This command could harm your system.")
+                console.print("[red]Be careful before running it manually or using --run.[/]\n")
+
 
             if run_mode:
                 cmd = extract_command(answer)
+                if is_dangerous_command(cmd):
+                    console.print("[bold red on yellow]🚨 DANGER:[/] This command could harm your system.")
+                    console.print("[red]Proceed only if you absolutely know what you’re doing.[/]\n")
+
                 console.print(f"[bold red]⚠️ Attempting to run:[/] {cmd}")
                 confirm = Prompt.ask("❓ Do you want to run this command? (y/N)").strip().lower()
                 if confirm == "y":
