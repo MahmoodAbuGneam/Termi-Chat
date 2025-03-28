@@ -88,20 +88,59 @@ def handle_request(full_input: str, explain_mode=False, run_mode=False):
         else:
             console.print("⏭️ Skipped running the command.")
 
+
+
+def print_help():
+    console.print("""
+[bold blue]
+TermiChat - AI-powered Linux terminal assistant
+
+Usage:
+  ai "your question" [--explain] [--run]
+  ai                        # to enter interactive mode
+  ai --help                # show this help message
+  ai --about               # show info about TermiChat
+[/]
+""")
+
+def print_about():
+    console.print("""
+[bold green]
+🧠 TermiChat
+An AI-powered Linux terminal assistant created by Mahmood Gneam.
+Originally built for personal productivity, now shared with the world.
+
+GitHub: https://github.com/MahmoodAbuGneam/Termi-Chat
+LinkedIn: https://www.linkedin.com/in/mahmoodgneam/
+[/]
+""")
+
+
+
+
+
+
 def main():
     # One-shot mode
     if len(sys.argv) > 1:
-        full_input = " ".join(sys.argv[1:]).strip()
-        explain_mode = "--explain" in full_input
-        run_mode = "--run" in full_input
+        if "--help" in sys.argv:
+            print_help()
+            return
+        elif "--about" in sys.argv:
+            print_about()
+            return
+        else:
+            full_input = " ".join(sys.argv[1:]).strip()
+            explain_mode = "--explain" in full_input
+            run_mode = "--run" in full_input
 
-        if explain_mode:
-            full_input = full_input.replace("--explain", "").strip()
-        if run_mode:
-            full_input = full_input.replace("--run", "").strip()
+            if explain_mode:
+                full_input = full_input.replace("--explain", "").strip()
+            if run_mode:
+                full_input = full_input.replace("--run", "").strip()
 
-        handle_request(full_input, explain_mode, run_mode)
-        return  # Exit after one-shot
+            handle_request(full_input, explain_mode, run_mode)
+            return  # Exit after one-shot
 
     # Interactive mode
     console.print("🧠 Welcome to TermiChat (type 'exit' or Ctrl+C to quit)\n")
